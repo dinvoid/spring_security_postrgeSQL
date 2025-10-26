@@ -1,6 +1,7 @@
 package com.example.demo.controllers;
 
 import com.example.demo.dto.response.CandidateResponse;
+import com.example.demo.dto.response.CandidateResponseSearchParam;
 import com.example.demo.dto.response.CandidateSearchResponse;
 import com.example.demo.services.EmployerCandidateServices;
 import lombok.RequiredArgsConstructor;
@@ -27,17 +28,18 @@ public class EmployerCandidateController {
         List<CandidateSearchResponse> candidates = ec.getAllCandidateProfiles();
         return ResponseEntity.ok(candidates);
     }
-
-  /*  public ResponseEntity<List<CandidateResponse>> searchCandidates(
+    @PreAuthorize("hasRole('MODERATOR')")
+    @GetMapping("/search")
+    public ResponseEntity<List<CandidateResponseSearchParam>> searchCandidates(
             @RequestParam(required = false) String skill,
             @RequestParam(required = false) String headline
     ) {
-        List<CandidateResponse> candidates = employerCandidateServices.searchCandidates(skill,summary);
-        return ResponseEntity.ok();
-        //return ResponseEntity.ok(" g",""
-                //employerCandidateServices.searchCandidates(skill, headline)
-        //);
+        List<CandidateResponseSearchParam> results = ec.searchCandidatesByParam(skill, headline);
+        return ResponseEntity.ok(results);
+
+
     }
 
-   */
+
+
 }

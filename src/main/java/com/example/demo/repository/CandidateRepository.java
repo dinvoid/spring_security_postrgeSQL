@@ -1,6 +1,7 @@
 package com.example.demo.repository;
 
 import com.example.demo.dto.response.CandidateResponse;
+import com.example.demo.dto.response.CandidateResponseSearchParam;
 import com.example.demo.models.Candidate;
 import com.example.demo.models.User;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -26,11 +27,11 @@ public interface CandidateRepository extends JpaRepository<Candidate,Long> {
         JOIN candidates c ON u.id = c.user_id
         WHERE 
             (:skill IS NULL OR CAST(c.skills AS TEXT) LIKE CONCAT('%', :skill, '%'))
-            AND (:summary IS NULL OR c.summary LIKE CONCAT('%', :summary, '%'))
+            AND (:headline IS NULL OR c.headline LIKE CONCAT('%', :headline, '%'))
         """, nativeQuery = true)
-    List<Object[]> searchCandidates(
+    List<CandidateResponseSearchParam> searchCandidatesByParam(
             @Param("skill") String skill,
-            @Param("summary") String summary
+            @Param("headline") String headline
     );
     //search all candidate
     @Query(value = """

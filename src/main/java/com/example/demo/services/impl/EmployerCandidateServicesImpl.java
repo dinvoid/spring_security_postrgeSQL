@@ -1,6 +1,7 @@
 package com.example.demo.services.impl;
 
 import com.example.demo.dto.response.CandidateResponse;
+import com.example.demo.dto.response.CandidateResponseSearchParam;
 import com.example.demo.dto.response.CandidateSearchResponse;
 import com.example.demo.models.Candidate;
 import com.example.demo.repository.CandidateRepository;
@@ -32,6 +33,12 @@ public class EmployerCandidateServicesImpl implements EmployerCandidateServices 
                         .build())
                 .collect(Collectors.toList());
     }
+
+    @Override
+    public List<CandidateResponseSearchParam> searchCandidatesByParam(String skill, String headline) {
+        return candidateRepository.searchCandidatesByParam(skill, headline);
+    }
+
 
 
 }
