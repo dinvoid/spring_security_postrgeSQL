@@ -29,7 +29,7 @@ public class JwtUtils {
     public String generateJwtToken(Authentication authentication) {
 
         UserDetailsImpl userPrincipal = (UserDetailsImpl) authentication.getPrincipal();
-
+        System.out.println("logs"+userPrincipal);
         return Jwts.builder()
                 .setSubject((userPrincipal.getUsername()))
                 .setIssuedAt(new Date())
