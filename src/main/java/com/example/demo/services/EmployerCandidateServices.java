@@ -12,5 +12,6 @@ public interface EmployerCandidateServices {
 
     List<CandidateSearchResponse> getAllCandidateProfiles();
     List<CandidateResponseSearchParam>searchCandidatesByParam(String skill, String headline);
+    List<CandidateResponseSearchParam> getFavorites();
 }
 

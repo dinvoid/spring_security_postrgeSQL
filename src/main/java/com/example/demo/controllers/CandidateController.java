@@ -27,7 +27,7 @@ public class CandidateController {
  /*   @PutMapping("/{id}")
     public ResponseEntity<Candidate> updateCandidate(@PathVariable Long id, @RequestBody Candidate candidate) {
         return candidateService.getCandidateById(id)
-                .map(existing -> {
+                .map( -> {
                     candidate.setId(id);
                     Candidate updated = candidateService.saveCandidate(candidate);
                     return ResponseEntity.ok(updated);

@@ -1,5 +1,6 @@
 package com.example.demo.models;
 
+import com.example.demo.models.enumeration.ERole;
 import jakarta.persistence.*;
 import lombok.Data;
 

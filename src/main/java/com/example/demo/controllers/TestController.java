@@ -12,11 +12,11 @@ import org.springframework.web.bind.annotation.RestController;
 public class TestController {
     @GetMapping("/all")
     public String allAccess() {
-        return "Public sContentsss.";
+        return "Public Contentsss.";
     }
-    @GetMapping("/alls")
+    @GetMapping("/public")
     public String allAccesss() {
-        return "Public Contents.";
+        return "This is for Public Contents.";
     }
 
     @GetMapping("/user")

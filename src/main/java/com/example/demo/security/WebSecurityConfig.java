@@ -63,6 +63,7 @@ public class WebSecurityConfig { // extends WebSecurityConfigurerAdapter {
                 .authorizeHttpRequests(auth ->
                         auth.requestMatchers("/api/auth/**").permitAll()       // signup/signin public
                                 .requestMatchers("/api/test/all").permitAll()      // this test endpoint public
+                                .requestMatchers("/api/test/public").permitAll()
                                 .requestMatchers("/api/test/user").hasAnyRole("USER", "MODERATOR", "ADMIN") // protected
                                 .requestMatchers("/api/test/mod").hasRole("MODERATOR")                      // protected
                                 .requestMatchers("/api/employer/candidates/**").hasRole("MODERATOR")
@@ -71,6 +72,7 @@ public class WebSecurityConfig { // extends WebSecurityConfigurerAdapter {
                                 .requestMatchers("/api/test/admin").hasRole("ADMIN")                         // protected
                                 .requestMatchers("/api/candidates/**").hasRole("USER")
                                 .requestMatchers("/api/candidates/").hasRole("USER")
+                                .requestMatchers("/actuator/**").permitAll()
                                 .anyRequest().authenticated()
                 );
 

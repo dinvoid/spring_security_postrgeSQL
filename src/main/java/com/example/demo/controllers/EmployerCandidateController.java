@@ -25,6 +25,7 @@ public class EmployerCandidateController {
     @PreAuthorize("hasRole('MODERATOR')")
     @GetMapping("/candidates")
     public ResponseEntity<List<CandidateSearchResponse>> getAllCandidates() {
+
         List<CandidateSearchResponse> candidates = ec.getAllCandidateProfiles();
         return ResponseEntity.ok(candidates);
     }
@@ -36,10 +37,10 @@ public class EmployerCandidateController {
     ) {
         List<CandidateResponseSearchParam> results = ec.searchCandidatesByParam(skill, headline);
         return ResponseEntity.ok(results);
-
-
     }
-
+    public ResponseEntity<List<CandidateResponseSearchParam>>getFavorites(){
+        return ResponseEntity.ok(ec.getFavorites());
+    }
 
 
 }

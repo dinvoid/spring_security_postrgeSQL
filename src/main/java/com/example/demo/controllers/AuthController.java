@@ -4,7 +4,7 @@ package com.example.demo.controllers;
 import java.util.*;
 import java.util.stream.Collectors;
 
-import com.example.demo.models.ERole;
+import com.example.demo.models.enumeration.ERole;
 import com.example.demo.models.Role;
 import com.example.demo.models.User;
 import com.example.demo.payload.request.LoginRequest;

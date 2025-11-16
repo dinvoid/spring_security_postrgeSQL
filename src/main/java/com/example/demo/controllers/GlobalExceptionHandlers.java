@@ -10,17 +10,6 @@ import org.springframework.web.servlet.NoHandlerFoundException;
 @RestControllerAdvice
 @ControllerAdvice
 public class GlobalExceptionHandlers {
-    @ExceptionHandler(NoHandlerFoundException.class)
-    public ResponseEntity<ErrorResponse> handleNotFound(NoHandlerFoundException ex) {
-        ErrorResponse errorResponse = ErrorResponse.builder(ex, HttpStatus.NOT_FOUND, ex.getMessage())
-                .title("Endpoint Not Found")
-                .detail("The endpoint you are trying to reach does not exist.")
-                .build();
-
-        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(errorResponse);
-    }
-
-
 
 
 }

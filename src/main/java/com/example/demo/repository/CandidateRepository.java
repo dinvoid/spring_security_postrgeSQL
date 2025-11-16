@@ -13,6 +13,8 @@ import java.util.Optional;
 
 public interface CandidateRepository extends JpaRepository<Candidate,Long> {
     Optional<Candidate> findByUser(User user);
+    List<Candidate> findByFavoriteTrue();
+
     //search candidate by params input
     @Query(value = """
         SELECT 
@@ -27,7 +29,8 @@ public interface CandidateRepository extends JpaRepository<Candidate,Long> {
         JOIN candidates c ON u.id = c.user_id
         WHERE 
             (:skill IS NULL OR CAST(c.skills AS TEXT) LIKE CONCAT('%', :skill, '%'))
-            AND (:headline IS NULL OR c.headline LIKE CONCAT('%', :headline, '%'))
+            or (:headline IS NULL OR c.headline LIKE CONCAT('%', :headline, '%'))
+     
         """, nativeQuery = true)
     List<CandidateResponseSearchParam> searchCandidatesByParam(
             @Param("skill") String skill,
@@ -47,4 +50,6 @@ public interface CandidateRepository extends JpaRepository<Candidate,Long> {
         JOIN candidates c ON u.id = c.user_id
         """, nativeQuery = true)
     List<Object[]> findAllCandidateProfiles();
+
+
 }
