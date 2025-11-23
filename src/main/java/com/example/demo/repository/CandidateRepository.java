@@ -13,7 +13,8 @@ import java.util.Optional;
 
 public interface CandidateRepository extends JpaRepository<Candidate,Long> {
     Optional<Candidate> findByUser(User user);
-    List<Candidate> findByFavoriteTrue();
+    Optional<Candidate> findByUserId(Long id);
+    //List<Candidate> findByFavoriteTrue();
 
     //search candidate by params input
     @Query(value = """

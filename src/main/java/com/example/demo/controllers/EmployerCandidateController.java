@@ -38,9 +38,9 @@ public class EmployerCandidateController {
         List<CandidateResponseSearchParam> results = ec.searchCandidatesByParam(skill, headline);
         return ResponseEntity.ok(results);
     }
-    public ResponseEntity<List<CandidateResponseSearchParam>>getFavorites(){
-        return ResponseEntity.ok(ec.getFavorites());
-    }
+//    public ResponseEntity<List<CandidateResponseSearchParam>>getFavorites(){
+//        return ResponseEntity.ok(ec.getFavorites());
+//    }
 
 
 }

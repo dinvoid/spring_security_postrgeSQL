@@ -39,8 +39,8 @@ public class EmployerCandidateServicesImpl implements EmployerCandidateServices 
         return candidateRepository.searchCandidatesByParam(skill, headline);
     }
 
-    @Override
-    public List<CandidateResponseSearchParam> getFavorites() {
-        return List.of(candidateRepository.findByIsFavoriteTrue);
-    }
+//    @Override
+//    public List<CandidateResponseSearchParam> getFavorites() {
+//        return List.of();
+//    }
 }

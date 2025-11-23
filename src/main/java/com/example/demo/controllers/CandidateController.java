@@ -1,11 +1,14 @@
 package com.example.demo.controllers;
 
 import com.example.demo.dto.request.CandidateRequest;
+import com.example.demo.dto.response.CandidateResponse;
 import com.example.demo.models.Candidate;
-import com.example.demo.services.impl.CandidateService;
+import com.example.demo.security.services.UserDetailsImpl;
+import com.example.demo.services.CandidateService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -23,6 +26,18 @@ public class CandidateController {
         Candidate saved = candidateService.saveCandidate(request);
         return ResponseEntity.ok(saved);
     }
+    @PreAuthorize("hasRole('USER')")
+    @PutMapping("/update-profile")
+    public ResponseEntity<CandidateResponse> updateProfile(@RequestBody CandidateRequest request, @AuthenticationPrincipal UserDetailsImpl userDetails){
+        CandidateResponse cr= candidateService.updateProfile(userDetails.getId(),request);
+        return ResponseEntity.ok(cr);
+    }
+    @PreAuthorize("hasRole('USER')")
+    @GetMapping("/profile")
+    public ResponseEntity<CandidateResponse> viewProfile(@AuthenticationPrincipal UserDetailsImpl userDetails){
+        CandidateResponse cr=candidateService.viewProfile(userDetails.getId());
+        return ResponseEntity.ok(cr);
+    }
 
  /*   @PutMapping("/{id}")
     public ResponseEntity<Candidate> updateCandidate(@PathVariable Long id, @RequestBody Candidate candidate) {
@@ -34,7 +49,7 @@ public class CandidateController {
                 })
                 .orElse(ResponseEntity.notFound().build());
     }
-*/
+
     @GetMapping("/{id}")
     public ResponseEntity<Candidate> getCandidateById(@PathVariable Long id) {
         return candidateService.getCandidateById(id)
@@ -51,5 +66,5 @@ public class CandidateController {
     public ResponseEntity<Void> deleteCandidate(@PathVariable Long id) {
         candidateService.deleteCandidate(id);
         return ResponseEntity.noContent().build();
-    }
+    }*/
 }

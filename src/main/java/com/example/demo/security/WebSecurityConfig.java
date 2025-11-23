@@ -61,7 +61,7 @@ public class WebSecurityConfig { // extends WebSecurityConfigurerAdapter {
                 .exceptionHandling(exception -> exception.authenticationEntryPoint(unauthorizedHandler))
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests(auth ->
-                        auth.requestMatchers("/api/auth/**").permitAll()       // signup/signin public
+                           auth.requestMatchers("/signup", "/login", "/api/auth/**").permitAll()
                                 .requestMatchers("/api/test/all").permitAll()      // this test endpoint public
                                 .requestMatchers("/api/test/public").permitAll()
                                 .requestMatchers("/api/test/user").hasAnyRole("USER", "MODERATOR", "ADMIN") // protected
@@ -69,6 +69,7 @@ public class WebSecurityConfig { // extends WebSecurityConfigurerAdapter {
                                 .requestMatchers("/api/employer/candidates/**").hasRole("MODERATOR")
                                 .requestMatchers("/api/employer/candidates/search").hasRole("MODERATOR")
                                 .requestMatchers("/api/employer/candidates/candidates").hasRole("MODERATOR")
+                                   .requestMatchers("/api/kanban/new").hasRole("MODERATOR")
                                 .requestMatchers("/api/test/admin").hasRole("ADMIN")                         // protected
                                 .requestMatchers("/api/candidates/**").hasRole("USER")
                                 .requestMatchers("/api/candidates/").hasRole("USER")

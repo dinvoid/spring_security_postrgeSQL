@@ -22,8 +22,6 @@ public class Candidate {
     private String lastName;
     private String headline;
     private String summary;
-
-
     // Store list of skills as JSON in a single column
     @Type(JsonType.class)
     @Column(columnDefinition = "jsonb")
