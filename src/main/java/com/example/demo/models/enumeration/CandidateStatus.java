@@ -1,6 +1,12 @@
 package com.example.demo.models.enumeration;
 
 public enum CandidateStatus {
+    NEW,
+    INTERVIEW,
+    HIRED
+}
+/*
+public enum CandidateStatus {
     FAVORITE,
     TO_CONTACT,
     CONTACTED,
@@ -10,3 +16,4 @@ public enum CandidateStatus {
     HIRED,
     REJECTED
 }
+*/

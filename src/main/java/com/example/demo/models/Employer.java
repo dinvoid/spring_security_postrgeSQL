@@ -15,7 +15,6 @@ public class Employer {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
     private String companyName;
     private String industry;
     private String website;

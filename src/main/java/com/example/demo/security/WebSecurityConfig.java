@@ -69,7 +69,9 @@ public class WebSecurityConfig { // extends WebSecurityConfigurerAdapter {
                                 .requestMatchers("/api/employer/candidates/**").hasRole("MODERATOR")
                                 .requestMatchers("/api/employer/candidates/search").hasRole("MODERATOR")
                                 .requestMatchers("/api/employer/candidates/candidates").hasRole("MODERATOR")
-                                   .requestMatchers("/api/kanban/new").hasRole("MODERATOR")
+                                   .requestMatchers("/api/kanban/new",
+                                           "/api/kanban/move",
+                                           "/api/pipeline/employer/**").hasRole("MODERATOR")
                                 .requestMatchers("/api/test/admin").hasRole("ADMIN")                         // protected
                                 .requestMatchers("/api/candidates/**").hasRole("USER")
                                 .requestMatchers("/api/candidates/").hasRole("USER")
@@ -83,5 +85,6 @@ public class WebSecurityConfig { // extends WebSecurityConfigurerAdapter {
 
         return http.build();
     }
+
 
 }

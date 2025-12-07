@@ -13,7 +13,9 @@ import java.util.Optional;
 
 public interface CandidateRepository extends JpaRepository<Candidate,Long> {
     Optional<Candidate> findByUser(User user);
-    Optional<Candidate> findByUserId(Long id);
+    Optional<Candidate> findByUserId(Long userId);
+
+
     //List<Candidate> findByFavoriteTrue();
 
     //search candidate by params input

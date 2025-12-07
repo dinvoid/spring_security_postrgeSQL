@@ -15,7 +15,7 @@ import java.time.LocalDate;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class CandidatePipeline {
+public class CandidatePipeline{
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
@@ -25,6 +25,7 @@ public class CandidatePipeline {
     @Column(name = "candidate_id", nullable = false)
     private Long candidateId;
 
+    @Builder.Default
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
     private PipelineStatus status = PipelineStatus.NEW;
@@ -35,10 +36,11 @@ public class CandidatePipeline {
 
     @Column(columnDefinition = "text")
     private String notes;
-
+    @Builder.Default
     @Column(name = "created_at", updatable = false)
     private LocalDate createdAt = LocalDate.now();
 
+    @Builder.Default
     @Column(name = "updated_at")
     private LocalDate updatedAt = LocalDate.now();
 

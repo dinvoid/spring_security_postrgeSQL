@@ -1,6 +1,7 @@
 package com.example.demo.exception;
 
-import com.example.demo.payload.response.ErrorResponse;
+import com.example.demo.exception.response.ErrorResponse;
+import com.example.demo.exception.response.MessageResponse;
 import io.jsonwebtoken.ExpiredJwtException;
 import io.jsonwebtoken.security.SignatureException;
 import org.springframework.dao.DataIntegrityViolationException;
@@ -10,11 +11,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
-import org.springframework.web.servlet.NoHandlerFoundException;
 
 import java.time.LocalDateTime;
-import java.util.HashMap;
-import java.util.Map;
 
 @RestControllerAdvice
 public class GlobalExceptionHandler {
@@ -27,6 +25,13 @@ public class GlobalExceptionHandler {
                 .build();
         return new ResponseEntity<>(error, status);
     }
+    @ExceptionHandler(AlreadyExistsException.class)
+    public ResponseEntity<ErrorResponse> handleDuplicate(AlreadyExistsException ex){
+        return buildErrorResponse(
+                ex,HttpStatus.CONFLICT
+        );
+    }
+
     @ExceptionHandler(io.jsonwebtoken.security.SignatureException.class)
     public ResponseEntity<ErrorResponse> handleInvalidJwt(SignatureException ex) {
         return buildErrorResponse(
@@ -34,6 +39,7 @@ public class GlobalExceptionHandler {
                 HttpStatus.UNAUTHORIZED
         );
     }
+
     @ExceptionHandler(io.jsonwebtoken.ExpiredJwtException.class)
     public ResponseEntity<ErrorResponse> handleExpiredJwt(ExpiredJwtException ex) {
         return buildErrorResponse(
@@ -78,4 +84,6 @@ public class GlobalExceptionHandler {
     public ResponseEntity<ErrorResponse> handleGeneral(Exception ex) {
         return buildErrorResponse(ex, HttpStatus.INTERNAL_SERVER_ERROR);
     }
+
+
 }
