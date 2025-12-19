@@ -33,7 +33,7 @@ public class CandidatePipelineController {
     @PreAuthorize("hasRole('MODERATOR')")
     @GetMapping("/employer/{employerId}")
     public ResponseEntity<List<CandidatePipelineResponse>> getCardsByEmployer(
-            @PathVariable Long employerId) {
+            @PathVariable("employerId") Long employerId) {
         List<CandidatePipelineResponse> cards = srv.getAllCardsByEmployer(employerId);
         return ResponseEntity.ok(cards);
     }

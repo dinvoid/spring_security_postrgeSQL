@@ -13,6 +13,9 @@ import java.util.List;
 public interface CandidatePipelineRepository extends JpaRepository<CandidatePipeline,Long> {
     @Query("SELECT COALESCE(MAX(c.position), 0) FROM CandidatePipeline c WHERE c.status = :status")
     Integer findMaxPositionByStatus(@Param("status") PipelineStatus status);
+    @Query("SELECT MAX(c.position) FROM CandidatePipeline c WHERE c.employerId = :emp AND c.status = :status")
+    Integer findMaxPositionByEmployerIdAndStatus(@Param("emp") Long employerId, @Param("status") PipelineStatus status);
+
 
     boolean existsByEmployerIdAndCandidateId(Long emp, Long id);
     List<CandidatePipeline> findByStatusOrderByPositionAsc(PipelineStatus status);

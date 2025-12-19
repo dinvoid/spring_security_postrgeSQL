@@ -9,6 +9,6 @@ import java.util.Map;
 public interface CandidatePipelineServices {
     public CandidatePipelineResponse addToKanban(Long emp,Long candidate);
     CandidatePipelineResponse moveCard(MoveCardRequest request);
-    CandidatePipelineResponse moveCards(MoveCardRequest request);
+    //CandidatePipelineResponse moveCards(MoveCardRequest request);
     List<CandidatePipelineResponse> getAllCardsByEmployer(Long employerId);
 }
